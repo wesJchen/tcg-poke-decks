@@ -1,29 +1,76 @@
-# Overview
+# TCG Pokemon Decks Project
 
-The web application is to help players explore and build Pokémon Trading Card Game (TCG) decks. The app will allow users to upload CSV files containing card data, display that data in a searchable and filterable catalog table, and analyze which cards synergize well in a 60-card deck.
+A Python project for building and managing Pokemon TCG decks. This is a monorepo consisting of the data ETL, backend, and frontend development towards a UI for managing trading cards.
+
+## Prerequisites
+
+- Python 3.9 or higher
+- Poetry (dependency manager)
+
+## Installation
+
+### 1. Install Poetry
+```bash
+# Using Homebrew (macOS)
+brew install poetry
+```
+
+### 2. Clone and Setup
+```bash
+git clone <your-repo-url>
+cd tcg-poke-decks
+```
+
+### 3. Install Dependencies
+```zsh
+poetry install
+```
+
+This will:
+- Create a virtual environment automatically
+- Install all dependencies from `pyproject.toml`
+- Install both main and development dependencies
+
+## Virtual Environment Management
+
+### Poetry 2.0+ (New Way)
+```zsh
+# Create and activate virtual environment
+poetry env use python
+source $(poetry env info --path)/bin/activate
+
+# Deactivate when done
+deactivate
+```
+
+## Running the Project
+
+```zsh
+# Check Python version in Poetry environment
+poetry run python --version
+# Detailed environment information
+poetry env info
+# Python executable Poetry is using
+```
 
 
-# Core Features (MVP):
+### Method 1: Direct Execution (Recommended)
+```zsh
+# Run Python files directly
+poetry run python src/data/extract.py
 
-[ ] CSV Upload: Drag-and-drop or file picker to upload Pokémon card CSV files.
+# Run Python commands
+poetry run python -c "import requests; print('requests works!')"
+```
 
-[ ] Data Parsing & Storage: Normalize and persist card data for use in the frontend.
+### Method 2: Activated Environment
+```zsh
+# Activate the environment first
+source $(poetry env info --path)/bin/activate
 
-[ ] Catalog Table View: Interactive table to display card details (e.g., HP, moves, type).
+# Then run normally
+python src/data/extract.py
 
-[ ] Filtering System: Filters by Pokémon type, move, energy cost, etc.
-
-[ ] Frontend Deployment: Live web app hosted on Vercel.
-
-
-# Future Enhancements
-
-[ ] Deck Builder Tool: Select cards into a virtual deck and get stats.
-
-[ ] Synergy Engine: Recommend cards that work well together based on type/move/energy.
-
-[ ] User Accounts: Save decks and upload history.
-
-[ ] Mobile-Friendly UI: Responsive design for phones and tablets.
-
-[ ] Export/Sharing: Export decks to CSV or shareable links.
+# Deactivate when done
+deactivate
+```
