@@ -74,3 +74,35 @@ python src/data/extract.py
 # Deactivate when done
 deactivate
 ```
+
+## Pre-commit Hooks
+
+### Setup
+```zsh
+# Install pre-commit as a dev dependency
+poetry add --group dev pre-commit
+
+# Install the pre-commit hooks
+poetry run pre-commit install
+```
+
+### Running Pre-commit Hooks
+```zsh
+# Run all hooks on all files
+poetry run pre-commit run --all-files
+
+# Run all hooks on staged files only
+poetry run pre-commit run
+
+# Run a specific hook
+poetry run pre-commit run black --all-files
+poetry run pre-commit run isort --all-files
+poetry run pre-commit run flake8 --all-files
+```
+
+### What Happens
+Every time you commit, pre-commit automatically:
+- Formats your code with Black
+- Sorts your imports with isort
+- Checks for linting issues with flake8
+- Only allows the commit if all checks pass
