@@ -1,0 +1,29 @@
+[project]
+name = "tcg-poke-decks"
+version = "0.1.0"
+description = "TCG Pokemon Deck Building Project"
+authors = [
+    {name = "wesleychen"}
+]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = "^3.9"
+dependencies = [
+    "requests (>=2.32.4,<3.0.0)",
+    "pandas (>=2.3.1,<3.0.0)"
+]
+
+[tool.poetry]
+package-mode = false
+
+[tool.poetry.group.dev.dependencies]
+black = "^25.1.0"
+isort = "^6.0.1"
+flake8 = "^7.3.0"
+pytest = "^8.4.1"
+pre-commit = "^4.3.0"
+ipykernel = "^6.30.1"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
