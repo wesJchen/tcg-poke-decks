@@ -1,0 +1,41 @@
+           ┌─────────────────────────┐
+           │    Pokémon TCG API      │
+           │  (JSON response)        │
+           └─────────────┬──────────┘
+                         │ Fetch API JSON
+                         ▼
+           ┌─────────────────────────┐
+           │   Airflow PythonOperator │
+           │   "extract & insert raw"│
+           └─────────────┬──────────┘
+                         │ Insert raw JSON
+                         ▼
+           ┌─────────────────────────┐
+           │    Postgres raw table    │
+           │   raw_api_data (JSONB)   │
+           └─────────────┬──────────┘
+                         │ Validate & flatten
+                         ▼
+           ┌─────────────────────────┐
+           │ Airflow PythonOperator   │
+           │   Pydantic validation    │
+           │   Flatten JSON → staging │
+           └─────────────┬──────────┘
+                         │ Insert validated data
+                         ▼
+           ┌─────────────────────────┐
+           │ Postgres staging table   │
+           │ validated / cleaned data │
+           └─────────────┬──────────┘
+                         │ Run validation tests
+                         ▼
+           ┌─────────────────────────┐
+           │ Airflow PythonOperator   │
+           │   Data quality checks    │
+           └─────────────┬──────────┘
+                         │ Pass → Load final
+                         ▼
+           ┌─────────────────────────┐
+           │ Postgres final table     │
+           │ ready for analytics/app │
+           └─────────────────────────┘
